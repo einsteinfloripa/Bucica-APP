@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import VerifyContainer from './Components/VerifyContainer';
+import VerifyContainer from '../Components/VerifyContainer';
 
 export default function Home() {
   return (
