@@ -7,6 +7,7 @@ import ReactLoading from 'react-loading';
 import maskCpf from '../public/mask';
 
 export default function VerifyContainer() {
+  let teste;
   const [inputValue, setInputValue] = useState('');
   const [isLogin, setIsLogin] = useState(true);
   const [linkMeet, setLinkMeet] = useState(null);
