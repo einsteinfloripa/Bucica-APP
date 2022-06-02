@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import VerifyContainer from '../Components/VerifyContainer';
 
+
+
 export default function Home() {
   return (
     <main className='flex flex-col items-center h-screen w-screen p-8 bg-blue-300'>
