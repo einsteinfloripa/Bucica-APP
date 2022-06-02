@@ -9,8 +9,6 @@ export default function Home() {
       <Image
         src='/../public/Einstein Floripa horizontal.png'
         alt='logo-einstein'
-        layout='raw'
-        sizes='100vw'
         width={270}
         height={130}
       />
