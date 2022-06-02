@@ -1,7 +1,7 @@
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx}',
-    './Components/**/*.{js,ts,jsx,tsx}',
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -10,6 +10,9 @@ module.exports = {
       },
       colors: {
         softblue: '#2672B2',
+      },
+      backgroundImage: {
+        einstein: "url('https://einsteinfloripa.com.br/images/bgEinstein.png')",
       },
     },
   },

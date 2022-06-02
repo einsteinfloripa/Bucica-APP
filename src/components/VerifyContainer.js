@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import ReactLoading from 'react-loading';
 
-import maskCpf from '../public/mask';
+import maskCpf from '../scripts/mask';
 
 export default function VerifyContainer() {
   let teste;
