@@ -6,10 +6,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'montserrat': ['Montserrat'],
+        montserrat: ['Montserrat'],
       },
       colors: {
-        'softblue': '#2672B2',
+        softblue: '#2672B2',
       },
     },
   },
