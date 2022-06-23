@@ -1,15 +1,15 @@
 // Refatorar esse código, poque não está muito bom!
 
-import axios from 'axios';
-import { useState } from 'react';
-import ReactLoading from 'react-loading';
+import axios from "axios";
+import { useState } from "react";
+import ReactLoading from "react-loading";
 
-import maskCpf from '../scripts/mask';
+import maskCpf from "../scripts/mask";
 
 export default function VerifyContainer() {
-  let teste;
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [isLogin, setIsLogin] = useState(true);
+  const [isAccess, setIsAccess] = useState(false);
   const [linkMeet, setLinkMeet] = useState(null);
   return (
     <div className='relative flex flex-col items-center mt-10 bg-white w-80 h-80 rounded-2xl'>
@@ -24,15 +24,19 @@ export default function VerifyContainer() {
         className='absolute flex flex-col items-center top-32'
         onSubmit={(e) => {
           e.preventDefault();
-          const promise = axios.post('/api/teste', { cpf: inputValue });
-          promise.then((res) => {
-            setIsLogin(false);
-            setTimeout(() => {
-              setLinkMeet(res.data.link);
-            }, 1000);
+          const promise = axios.post(
+            "https://einsteinfloripa.com.br/bucica/join",
+            { Cpf: inputValue },
+          );
+          setIsLogin(false);
+          promise.then(({ data }) => {
+            const link = data.Msg.Url;
+            setLinkMeet(link);
+            setIsAccess(true);
           });
           promise.catch(() => {
-            alert('CPF invalido');
+            setIsLogin(true);
+            alert("CPF invalido");
           });
         }}>
         {isLogin ? (
@@ -53,14 +57,14 @@ export default function VerifyContainer() {
           <button className='bg-softblue w-60 h-12 rounded-3xl font-montserrat font-bold mt-10'>
             Verificar CPF
           </button>
-        ) : linkMeet ? (
+        ) : isAccess ? (
           <button className='bg-softblue w-60 h-16 rounded-3xl font-montserrat font-bold'>
             <a href={linkMeet} target='_blank' rel='noreferrer'>
               Acessar Aula
             </a>
           </button>
         ) : (
-          <ReactLoading type={'spin'} color={'000000'} height={70} width={70} />
+          <ReactLoading type={"spin"} color={"000000"} height={70} width={70} />
         )}
       </form>
     </div>
