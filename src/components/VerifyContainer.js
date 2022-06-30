@@ -12,21 +12,21 @@ export default function VerifyContainer() {
   const [isAccess, setIsAccess] = useState(false);
   const [linkMeet, setLinkMeet] = useState(null);
   return (
-    <div className='relative flex flex-col items-center mt-10 bg-white w-80 h-80 rounded-2xl'>
+    <div className="relative flex flex-col items-center mt-10 bg-white w-80 h-80 rounded-2xl">
       {isLogin ? (
-        <p className='absolute font-montserrat font-bold text-4xl top-10'>
+        <p className="absolute font-montserrat font-bold text-4xl top-10">
           Chamada
         </p>
       ) : (
         <></>
       )}
       <form
-        className='absolute flex flex-col items-center top-32'
+        className="absolute flex flex-col items-center top-32"
         onSubmit={(e) => {
           e.preventDefault();
           const promise = axios.post(
             "https://einsteinfloripa.com.br/bucica/join",
-            { Cpf: inputValue },
+            { Cpf: inputValue }
           );
           setIsLogin(false);
           promise.then(({ data }) => {
@@ -34,16 +34,23 @@ export default function VerifyContainer() {
             setLinkMeet(link);
             setIsAccess(true);
           });
-          promise.catch(() => {
+          promise.catch((error) => {
             setIsLogin(true);
-            alert("CPF invalido");
+            if (error.response) {
+              alert(error.response.data.Err);
+            } else if (error.request) {
+              alert(error.request);
+            } else {
+              alert("Error: " + error.message);
+            }
           });
-        }}>
+        }}
+      >
         {isLogin ? (
           <input
-            type='text'
-            className='border-black border-2 rounded-2xl w-72 h-10 text-center font-montserrat text-xl'
-            placeholder='Digite seu CPF'
+            type="text"
+            className="border-black border-2 rounded-2xl w-72 h-10 text-center font-montserrat text-xl"
+            placeholder="Digite seu CPF"
             value={inputValue}
             onChange={(e) => {
               const cpfWithMask = maskCpf(e.target.value);
@@ -54,12 +61,12 @@ export default function VerifyContainer() {
           <></>
         )}
         {isLogin ? (
-          <button className='bg-softblue w-60 h-12 rounded-3xl font-montserrat font-bold mt-10'>
+          <button className="bg-softblue w-60 h-12 rounded-3xl font-montserrat font-bold mt-10">
             Verificar CPF
           </button>
         ) : isAccess ? (
-          <button className='bg-softblue w-60 h-16 rounded-3xl font-montserrat font-bold'>
-            <a href={linkMeet} target='_blank' rel='noreferrer'>
+          <button className="bg-softblue w-60 h-16 rounded-3xl font-montserrat font-bold">
+            <a href={linkMeet} target="_blank" rel="noreferrer">
               Acessar Aula
             </a>
           </button>
