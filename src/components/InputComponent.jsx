@@ -17,8 +17,8 @@ export default function InputComponent({
         value={inputValue}
         onChange={(e) => {
           setInputValue(maskCpf(e.target.value));
+          setErrorMessage("");
         }}
-        onClick={() => setErrorMessage("")}
       />
       {errorMessage && (
         <p className='text-red-500 text-lg my-2'>{errorMessage}</p>
