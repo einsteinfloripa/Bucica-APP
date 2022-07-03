@@ -60,7 +60,7 @@ export default function VerifyContainer() {
         )}
         {isAccess && (
           <a
-            className='flex justify-center items-center bg-softblue w-60 h-16 rounded-3xl font-montserrat font-bold'
+            className='flex justify-center items-center bg-softblue w-60 h-16 rounded-3xl font-montserrat font-bold text-white'
             href={linkMeet}
             target='_blank'
             rel='noopener noreferrer'>

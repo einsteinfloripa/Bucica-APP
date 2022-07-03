@@ -23,7 +23,7 @@ export default function InputComponent({
       {errorMessage && (
         <p className='text-red-500 text-lg my-2'>{errorMessage}</p>
       )}
-      <button className='bg-softblue w-60 h-12 rounded-3xl font-montserrat font-bold'>
+      <button className='bg-softblue w-60 h-12 rounded-3xl font-montserrat font-bold text-white'>
         Verificar CPF
       </button>
     </>
