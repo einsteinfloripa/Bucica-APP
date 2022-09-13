@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import VerifyContainer from "../components/VerifyContainer";
 import logoEinstein from "../../public/Einstein Floripa horizontal.png";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -16,7 +17,18 @@ export default function Home() {
           width={270}
           height={130}
         />
-        <VerifyContainer />
+        <div className='relative flex flex-col items-center justify-around mt-10 bg-white w-80 h-80 rounded-2xl'>
+          <Link href='/bucicaonline'>
+            <div className='flex justify-center items-center bg-softblue w-60 h-16 rounded-3xl font-montserrat font-bold text-white  cursor-pointer'>
+              Bucica Online
+            </div>
+          </Link>
+          <Link href='/bucicaqr'>
+            <div className='flex justify-center items-center bg-softblue w-60 h-16 rounded-3xl font-montserrat font-bold text-white  cursor-pointer'>
+              Bucica QR
+            </div>
+          </Link>
+        </div>
       </div>
     </main>
   );
