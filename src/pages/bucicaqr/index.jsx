@@ -12,7 +12,7 @@ export default function BucicaQR() {
 
   useEffect(() => {
     function getFetchUrl(matricula) {
-      return `${process.env.NEXT_PUBLIC_API_URL}/presenca/${matricula}`;
+      return `${process.env.NEXT_PUBLIC_API_URL}/presenca/qr/${matricula}`;
     }
 
     async function fetchQRData() {
