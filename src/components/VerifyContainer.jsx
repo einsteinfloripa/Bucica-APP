@@ -14,24 +14,21 @@ export default function VerifyContainer() {
 
   const requestServer = useCallback(
     async (e) => {
+      function getFetchUrl(cpf) {
+        return `${process.env.NEXT_PUBLIC_API_URL}/presenca/cpf/${cpf}`;
+      }
+
       e.preventDefault();
       setIsLogin(false);
+
       try {
-        const { data } = await axios.post(process.env.NEXT_PUBLIC_API_URL, {
-          Cpf: inputValue,
-        });
-        const link = data.Msg.Url;
-        setLinkMeet(link);
+        const { data } = await axios.post(getFetchUrl(inputValue));
+        setLinkMeet("");
         setIsAccess(true);
-      } catch (error) {
+      } 
+      catch (error) {
         setIsLogin(true);
-        if (error.response) {
-          setErrorMessage(error.response.data.Err);
-        } else if (error.request) {
-          setErrorMessage(error.request);
-        } else {
-          setErrorMessage("Error: " + error.message);
-        }
+        setErrorMessage(error.response.data);
       }
     },
     [inputValue],
