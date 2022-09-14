@@ -12,7 +12,7 @@ module.exports = {
         softblue: '#2672B2',
       },
       backgroundImage: {
-        einstein: "url('https://einsteinfloripa.com.br/images/bgEinstein.png')",
+        einstein: "url('/bgEinstein.png')",
       },
     },
   },

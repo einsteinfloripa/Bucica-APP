@@ -1,7 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import VerifyContainer from "../components/VerifyContainer";
-import logoEinstein from "../../public/Einstein Floripa horizontal.png";
 import Link from "next/link";
 
 export default function Home() {
@@ -12,7 +10,7 @@ export default function Home() {
       </Head>
       <div className='flex flex-col items-center h-screen w-screen backdrop-grayscale'>
         <Image
-          src={logoEinstein}
+          src="/Einstein Floripa horizontal.png"
           alt='logo-einstein'
           width={270}
           height={130}
