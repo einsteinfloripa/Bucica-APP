@@ -9,6 +9,7 @@ import { QrReader } from "react-qr-reader";
 export default function BucicaQR() {
   const [data, setData] = useState(false);
   const [QRData, setQRData] = useState("");
+  const [swap, setSwap] = useState("environment");
 
   useEffect(() => {
     function getFetchUrl(matricula) {
@@ -31,6 +32,11 @@ export default function BucicaQR() {
     }
   }, [QRData]);
 
+  function swapCamera() {
+    if (swap === "environment") setSwap("user");
+    else setSwap("environment");
+  }
+
   return (
     <main className='h-screen w-screen bg-einstein bg-center bg-cover'>
       <Head>
@@ -46,7 +52,7 @@ export default function BucicaQR() {
             className='cursor-pointer'
           />
         </Link>
-        <div className='mt-10 bg-white w-80 h-80 rounded-2xl p-8'>
+        <div className='flex flex-col justify-center mt-10 bg-white w-80 rounded-2xl p-5'>
           {data ? (
             <ReactLoading
               className='mx-auto my-20'
@@ -56,14 +62,22 @@ export default function BucicaQR() {
               width={70}
             />
           ) : (
-            <QrReader
-              onResult={(result) => {
-                if (result?.text) {
-                  setQRData(result.text);
-                }
-              }}
-              scanDelay={2000}
-            />
+            <>
+              <QrReader
+                constraints={{ facingMode: swap }}
+                onResult={(result) => {
+                  if (result?.text) {
+                    setQRData(result.text);
+                  }
+                }}
+                scanDelay={2000}
+              />
+              <div
+                className='flex justify-center items-center bg-softblue w-60 h-16 rounded-3xl font-montserrat font-bold text-white mx-auto cursor-pointer'
+                onClick={swapCamera}>
+                Trocar Camera
+              </div>
+            </>
           )}
         </div>
       </div>
