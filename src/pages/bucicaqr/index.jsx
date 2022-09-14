@@ -52,7 +52,7 @@ export default function BucicaQR() {
             className='cursor-pointer'
           />
         </Link>
-        <div className='flex flex-col justify-center mt-10 bg-white w-80 rounded-2xl px-5'>
+        <div className='flex flex-col justify-center mt-10 bg-white w-80 rounded-2xl p-5'>
           {data ? (
             <ReactLoading
               className='mx-auto my-20'
