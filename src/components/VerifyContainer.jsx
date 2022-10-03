@@ -13,7 +13,7 @@ export default function VerifyContainer() {
   const requestServer = useCallback(
     async (e) => {
       function getFetchUrl(cpf) {
-        return `${process.env.NEXT_PUBLIC_API_URL}/presenca/cpf/${cpf}`;
+        return `${process.env.NEXT_PUBLIC_API_URL}presenca/cpf/${cpf}`;
       }
 
       e.preventDefault();
