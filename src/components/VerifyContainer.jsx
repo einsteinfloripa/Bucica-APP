@@ -8,9 +8,7 @@ export default function VerifyContainer() {
   // States
   const [inputValue, setInputValue] = useState("");
   const [isLogin, setIsLogin] = useState(true);
-  const [isAccess, setIsAccess] = useState(false);
-  const [linkMeet, setLinkMeet] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState({});
 
   const requestServer = useCallback(
     async (e) => {
@@ -22,13 +20,18 @@ export default function VerifyContainer() {
       setIsLogin(false);
 
       try {
-        const { data } = await axios.post(getFetchUrl(inputValue));
-        setLinkMeet("");
-        setIsAccess(true);
-      } 
-      catch (error) {
+        await axios.post(getFetchUrl(inputValue));
         setIsLogin(true);
-        setErrorMessage(error.response.data);
+        setMessage({
+          type: "ok",
+          text: "Chamada feita com sucesso!",
+        });
+      } catch (error) {
+        setIsLogin(true);
+        setMessage({
+          type: "error",
+          text: error.response.data,
+        });
       }
     },
     [inputValue],
@@ -47,22 +50,13 @@ export default function VerifyContainer() {
         {isLogin && (
           <InputComponent
             setInputValue={setInputValue}
-            setErrorMessage={setErrorMessage}
-            errorMessage={errorMessage}
+            setMessage={setMessage}
+            message={message}
             inputValue={inputValue}
           />
         )}
-        {!isLogin && !isAccess && (
+        {!isLogin && (
           <ReactLoading type={"spin"} color={"000000"} height={70} width={70} />
-        )}
-        {isAccess && (
-          <a
-            className='flex justify-center items-center bg-softblue w-60 h-16 rounded-3xl font-montserrat font-bold text-white'
-            href={linkMeet}
-            target='_blank'
-            rel='noopener noreferrer'>
-            Acessar Aula
-          </a>
         )}
       </form>
     </div>
