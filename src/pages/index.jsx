@@ -10,7 +10,7 @@ export default function Home() {
       </Head>
       <div className='flex flex-col items-center h-screen w-screen backdrop-grayscale'>
         <Image
-          src="/Einstein Floripa horizontal.png"
+          src='/Einstein Floripa horizontal.png'
           alt='logo-einstein'
           width={270}
           height={130}
@@ -21,11 +21,9 @@ export default function Home() {
               Bucica Online
             </div>
           </Link>
-          <Link href='/bucicaqr'>
-            <div className='flex justify-center items-center bg-softblue w-60 h-16 rounded-3xl font-montserrat font-bold text-white  cursor-pointer'>
-              Bucica QR
-            </div>
-          </Link>
+          <div className='flex justify-center items-center bg-gray-400 w-60 h-16 rounded-3xl font-montserrat font-bold text-white  cursor-not-allowed'>
+            Bucica QR
+          </div>
         </div>
       </div>
     </main>
