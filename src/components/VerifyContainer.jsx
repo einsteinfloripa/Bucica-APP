@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ReactLoading from "react-loading";
+import { distanceTwoPointGPS } from "../scripts/distanceTwoPointGPS";
 
 import InputComponent from "./InputComponent";
 
@@ -9,6 +10,13 @@ export default function VerifyContainer() {
   const [inputValue, setInputValue] = useState("");
   const [isLogin, setIsLogin] = useState(true);
   const [message, setMessage] = useState({});
+  const [position, setPosition] = useState({});
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      setPosition({ latitude, longitude });
+    });
+  }, []);
 
   const requestServer = useCallback(
     async (e) => {
@@ -18,23 +26,35 @@ export default function VerifyContainer() {
 
       e.preventDefault();
       setIsLogin(false);
-
-      try {
-        await axios.post(getFetchUrl(inputValue));
-        setIsLogin(true);
-        setMessage({
-          type: "ok",
-          text: "Chamada feita com sucesso!",
-        });
-      } catch (error) {
-        setIsLogin(true);
+      const distanceFromUser = distanceTwoPointGPS(
+        position.latitude,
+        position.longitude,
+        );
+        
+      if (distanceFromUser > 5000) {
         setMessage({
           type: "error",
-          text: error.response.data,
+          text: "Você está muito longe do local de aula!",
         });
+        setIsLogin(true);
+      } else {
+        try {
+          await axios.post(getFetchUrl(inputValue));
+          setIsLogin(true);
+          setMessage({
+            type: "ok",
+            text: "Chamada feita com sucesso!",
+          });
+        } catch (error) {
+          setIsLogin(true);
+          setMessage({
+            type: "error",
+            text: error.response.data,
+          });
+        }
       }
     },
-    [inputValue],
+    [inputValue, position],
   );
 
   return (
