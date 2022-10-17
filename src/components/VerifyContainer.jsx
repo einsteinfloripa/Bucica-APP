@@ -11,6 +11,7 @@ export default function VerifyContainer() {
   const [isLogin, setIsLogin] = useState(true);
   const [message, setMessage] = useState({});
   const [position, setPosition] = useState({});
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
@@ -29,9 +30,9 @@ export default function VerifyContainer() {
       const distanceFromUser = distanceTwoPointGPS(
         position.latitude,
         position.longitude,
-        );
-        
-      if (distanceFromUser > 5000) {
+      );
+      console.log(distanceFromUser);
+      if (distanceFromUser > 500) {
         setMessage({
           type: "error",
           text: "Você está muito longe do local de aula!",
