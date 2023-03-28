@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import VerifyContainer from "../components/VerifyContainer";
 import logoEinstein from "../../public/Einstein Floripa horizontal.png";
 import Link from "next/link";
 
