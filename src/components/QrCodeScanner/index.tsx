@@ -5,13 +5,14 @@ import { useQrCode } from "@hooks";
 
 export const QrCodeScanner = () => {
   const { createAttendance, isLoading } = useQrCode();
+  type OnError = Parameters<typeof createAttendance>[2];
 
   const onSuccess = () => {
-    alert("Success");
+    alert("Chamada realizada com sucesso!");
     location.reload();
   };
-  const onError = () => {
-    alert("Error");
+  const onError: OnError = (response) => {
+    alert(response.message);
     location.reload();
   };
 

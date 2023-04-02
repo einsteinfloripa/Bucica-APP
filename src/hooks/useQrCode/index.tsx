@@ -16,7 +16,7 @@ export const useQrCode = () => {
       const response = await einsteinApi.attendance.createAttendance(qrData);
       callbackSuccess && callbackSuccess(response);
     } catch (error: any) {
-      callbackError && callbackError(error);
+      callbackError && callbackError(error.response.data);
     }
   };
 

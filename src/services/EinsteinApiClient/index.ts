@@ -16,7 +16,7 @@ class Attendance {
   constructor(protected readonly api: AxiosInstance) {}
 
   async createAttendance(studentId: string) {
-    const response = await this.api.get("");
+    const response = await this.api.post(`/presenca/${studentId}`);
     return response;
   }
 }
