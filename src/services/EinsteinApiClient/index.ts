@@ -16,7 +16,16 @@ class Attendance {
   constructor(protected readonly api: AxiosInstance) {}
 
   async createAttendance(studentId: string) {
-    const response = await this.api.post(`/presenca/${studentId}`);
+    const response = await this.api.post(
+      `/presenca/${studentId}`,
+      {},
+      {
+        auth: {
+          username: localStorage.getItem("username") || "",
+          password: localStorage.getItem("password") || "",
+        }
+      },
+    );
     return response;
   }
 }
