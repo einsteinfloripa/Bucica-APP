@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import VerifyContainer from "../../components/VerifyContainer";
 
-export default function BucicaOnline() {
+import { QrCodeScanner } from "@components";
+
+export default function BucicaQR() {
   return (
     <main className='h-screen w-screen bg-einstein bg-center bg-cover'>
       <Head>
@@ -19,9 +20,14 @@ export default function BucicaOnline() {
             className='cursor-pointer'
           />
         </Link>
-
-        <VerifyContainer />
+        <div className='mt-10 bg-white w-80 h-80 rounded-2xl p-8'>
+          <QrCodeScanner />
+        </div>
       </div>
     </main>
   );
+}
+
+{
+  /* */
 }
